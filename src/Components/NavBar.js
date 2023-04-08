@@ -6,8 +6,8 @@ import { motion } from 'framer-motion';
 //NAVBAR ANIMATION
 
 const navAnimation = {
-  hidden:{y:-200,opacity:0,skew:10},
-  visible:{y:0,opacity:1,skew:360,transition:{duration:1}}
+  hidden:{y:-200,opacity:0,rotate:90},
+  visible:{y:0,opacity:1,rotate:360,transition:{duration:2}}
 }
 const NavBar = () => {
   return (
