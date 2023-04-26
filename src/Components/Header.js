@@ -5,7 +5,7 @@ import backgroundImage from "../images/illustration-working.svg";
 
 //HERO SECTION ANIMATION
 const heroAnimation = {
-  hidden: { opacity: 0 ,x:-200},
+  hidden: { opacity: 0 ,x:-300},
   visible: { opacity: 1 ,x:0, transition:{duration:1}},
   
 };

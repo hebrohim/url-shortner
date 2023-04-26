@@ -8,3 +8,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.inputContainer{
+  background:url(./images/bg-shorten-mobile.svg);
+  background-repeat: no-repeat;
+  background-color: #032324 ;
+  background-position:top right ;
+}
