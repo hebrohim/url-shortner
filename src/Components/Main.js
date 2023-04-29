@@ -7,28 +7,25 @@ const Main = () => {
   const [userInput, setuserInput] = useState("");
   const [shortenedLink, setshortenedLink] = useState("");
   const [displayLink, setdisplayLink] = useState(false)
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios(
-  //       `https://api.shrtco.de/v2/shorten?url=${userInput}`
-  //     );
-  //     // setshortenedLink(response.data.result.full_short_link);
-  //     console.log(response.data)
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+const [copied, setCopied] = useState(false)
 
- const Data = ()=>{ fetch(`https://api.shrtco.de/v2/shorten?url=${userInput}`)
-.then(response =>{
-    return response.json();
-}).then(data =>{
-  
-   setshortenedLink(data.result.full_short_link)
-  
-})
+  //Fetch Data
 
- }
+const Data = () => {axios.get(`https://api.shrtco.de/v2/shorten?url=${userInput}`).then((response) => {
+   setshortenedLink(response.data.result.full_short_link)
+  
+});
+}
+
+let btn_style = {
+  borderRadius:"5px",
+  textAlign:"center",
+  padding:"5px",
+  color:"white",
+  // fontWeight:"bold"
+  // 'rounded-md text-center p-2 text-white font-textFont md:w-[20%] md:h-14'
+
+}
 
   return (
     <div className="h-[90vh] bg-[#d4e6f1a1]">
@@ -60,13 +57,13 @@ const Main = () => {
             </div>
             <CopyToClipboard text={shortenedLink}>
             <button
-              className="bg-[#22da1c] rounded-md text-center p-2 text-white font-textFont
-             md:w-[20%] md:h-14"
+            style={btn_style}
+              className= {copied?"bg-red-500":"bg-yellow-500"} 
               onClick={() => {
-                console.log(userInput);
+                setCopied(!copied)
               }}
             >
-              copy to clipboard
+              {copied?"copied!":"copy to clipboard"}
             </button>
 </CopyToClipboard>
           
