@@ -2,21 +2,39 @@ import React from "react";
 import { useState } from "react";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import axios from "axios";
+import { motion } from "framer-motion";
 
 const Main = () => {
   const [userInput, setuserInput] = useState("");
   const [shortenedLink, setshortenedLink] = useState("");
   const [originalLink, setoriginalLink] = useState("");
   const [displayLink, setdisplayLink] = useState(false)
+  const [errorMessage, seterrorMessage] = useState("")
+  const [loading, setloading] = useState(true)
 const [copied, setCopied] = useState(false)
+const allShortenLink =[]
+
+
+//Animation 
+
+const Animation = {
+  hidden: { opacity: 0 ,x:-300,scale:2},
+  visible: { opacity: 1 ,x:0,scale:1, transition:{duration:1}},
+  
+};
 
   //Fetch Data
 
 const Data = () => {axios.get(`https://api.shrtco.de/v2/shorten?url=${userInput}`).then((response) => {
+  // console.log(response.data)
+ 
    setshortenedLink(response.data.result.full_short_link)
    setoriginalLink(response.data.result.original_link)
-  console.log(response.data)
-});
+   allShortenLink.push(response.data.result.full_short_link)
+  // setallShortenLink(response.data.result.full_short_link)
+   console.log(allShortenLink)
+  setloading(false)
+}).catch((error)=>{seterrorMessage("please enter a valid url!")});
 }
 
 let btn_style = {
@@ -48,16 +66,23 @@ let btn_style = {
             onClick={() => {
               Data();
               setdisplayLink(true)
+            
+              // allShortenLink.push({shortenedLink})
+              
             }}
           >
             Shorten it
           </button>
-
+<span className="text-red-500">{userInput?null:errorMessage}</span>
         </div>
       </section>
 
-      {displayLink?
-      <section className="flex justify-center ">
+
+
+
+      {displayLink && userInput?
+      <motion.section  variants={Animation} initial="hidden" animate = "visible" className="flex justify-center ">
+        {loading?<h1>Loading...</h1>:
           <div className="w-[80vw] p-4 flex  flex-col justify-between items-center bg-white overflow-hidden rounded-md">
           <span className="text-sm text-center border-b-2 pb-2">{originalLink}</span>
             <span className=" text-xl text-center mb-1 p-2 text-[#19c9cf]">
@@ -77,7 +102,8 @@ let btn_style = {
 </CopyToClipboard>
           
           </div>
-          </section>:null
+}
+          </motion.section>:null
 
             }
     </div>
