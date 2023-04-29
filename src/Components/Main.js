@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import axios from "axios";
 import { motion } from "framer-motion";
@@ -36,6 +36,16 @@ const Data = () => {axios.get(`https://api.shrtco.de/v2/shorten?url=${userInput}
   setloading(false)
 }).catch((error)=>{seterrorMessage("please enter a valid url!")});
 }
+
+//change button with timeout
+
+useEffect(() => {
+setTimeout(() => {
+  
+setCopied(false)
+
+}, 5000);
+}, [copied])
 
 let btn_style = {
   borderRadius:"5px",
