@@ -28,9 +28,9 @@ let btn_style = {
 }
 
   return (
-    <div className="h-[90vh] bg-[#d4e6f1a1]">
+    <div className="h-[90vh] bg-[#d4e6f1a1] border-4 border-red-400">
       <section className="flex justify-center">
-        <div className=" inputContainer w-[80vw] h-[30vh] flex flex-col px-5 rounded-lg translate-y-[-50%] md:flex-row md:justify-between md:h-[20vh] md:items-center">
+        <div className=" inputContainer w-[80vw] flex flex-col p-5 rounded-lg translate-y-[-50%] md:flex-row md:justify-between md:h-[20vh] md:items-center">
           <input
             value={userInput}
             onChange={(e) => {
@@ -50,9 +50,14 @@ let btn_style = {
           >
             Shorten it
           </button>
-{displayLink?
-          <section className="flex flex-col justify-between items-center w-full">
-            <div className="text-white text-xl text-center">
+
+        </div>
+      </section>
+
+      {displayLink?
+      <section className="flex justify-center ">
+          <div className="w-[80vw] p-4 flex justify-between items-center bg-white">
+            <div className=" text-xl text-center border-2 mb-1 p-2">
               {shortenedLink}
             </div>
             <CopyToClipboard text={shortenedLink}>
@@ -67,11 +72,10 @@ let btn_style = {
             </button>
 </CopyToClipboard>
           
+          </div>
           </section>:null
 
             }
-        </div>
-      </section>
     </div>
   );
 };
