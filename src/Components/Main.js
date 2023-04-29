@@ -13,7 +13,7 @@ const [copied, setCopied] = useState(false)
 
 const Data = () => {axios.get(`https://api.shrtco.de/v2/shorten?url=${userInput}`).then((response) => {
    setshortenedLink(response.data.result.full_short_link)
-  
+  console.log(response.data)
 });
 }
 
@@ -28,7 +28,7 @@ let btn_style = {
 }
 
   return (
-    <div className="h-[90vh] bg-[#d4e6f1a1] border-4 border-red-400">
+    <div className="h-[90vh] bg-[#d4e6f1a1]">
       <section className="flex justify-center">
         <div className=" inputContainer w-[80vw] flex flex-col p-5 rounded-lg translate-y-[-50%] md:flex-row md:justify-between md:h-[20vh] md:items-center">
           <input
