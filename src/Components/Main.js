@@ -6,6 +6,7 @@ import axios from "axios";
 const Main = () => {
   const [userInput, setuserInput] = useState("");
   const [shortenedLink, setshortenedLink] = useState("");
+  const [originalLink, setoriginalLink] = useState("");
   const [displayLink, setdisplayLink] = useState(false)
 const [copied, setCopied] = useState(false)
 
@@ -13,6 +14,7 @@ const [copied, setCopied] = useState(false)
 
 const Data = () => {axios.get(`https://api.shrtco.de/v2/shorten?url=${userInput}`).then((response) => {
    setshortenedLink(response.data.result.full_short_link)
+   setoriginalLink(response.data.result.original_link)
   console.log(response.data)
 });
 }
@@ -56,10 +58,12 @@ let btn_style = {
 
       {displayLink?
       <section className="flex justify-center ">
-          <div className="w-[80vw] p-4 flex justify-between items-center bg-white">
-            <div className=" text-xl text-center border-2 mb-1 p-2">
+          <div className="w-[80vw] p-4 flex  flex-col justify-between items-center bg-white overflow-hidden rounded-md">
+          <span className="text-sm text-center border-b-2 pb-2">{originalLink}</span>
+            <span className=" text-xl text-center mb-1 p-2 text-[#19c9cf]">
               {shortenedLink}
-            </div>
+            </span>
+           
             <CopyToClipboard text={shortenedLink}>
             <button
             style={btn_style}

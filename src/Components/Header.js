@@ -13,10 +13,10 @@ const heroAnimation = {
 
 const Header = () => {
   return (
-    <motion.section variants={heroAnimation} initial="hidden" animate = "visible" className="w-screen border-4 md:h-[80vh]">
+    <motion.section variants={heroAnimation} initial="hidden" animate = "visible" className="w-screen md:h-[80vh]">
       <div className="flex flex-col-reverse items-center  ml-5 md:flex-row md:ml-20">
         <div className=" heroText mt-5 mb-40 px-3 flex flex-col justify-center items-center md:items-start">
-          <h1 className=" font-textFont text-4xl  text-gray-800 font-bold text-center md:text-left md:text-5xl">
+          <h1 className=" font-textFont text-3xl  text-gray-800 font-bold text-center md:text-left md:text-5xl">
             More than just shorter links
           </h1>
           <p className="text-center md:text-left md:text-xl">
